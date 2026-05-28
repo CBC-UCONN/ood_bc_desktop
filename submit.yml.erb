@@ -1,0 +1,16 @@
+---
+batch_connect:
+  template: vnc
+  set_host: "host=$(hostname -f)"
+  script_wrapper: |
+    export PATH=/opt/TurboVNC/bin:$PATH
+    export WEBSOCKIFY_CMD=/usr/bin/websockify
+    %s
+
+script:
+  native: [
+    "--partition=test",
+    "--qos=test",
+    "--mem=<%= custom_memory %>",
+    "--cpus-per-task=<%= num_cores %>",
+    <%- if not gres.blank? -%> "--gres=<%= gres %>", <%- end -%>]

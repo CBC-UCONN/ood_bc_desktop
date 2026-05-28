@@ -1,0 +1,49 @@
+---
+cluster: "mantis"
+
+attributes:
+  desktop: "xfce"
+
+  bc_vnc_idle: 0
+
+  bc_vnc_resolution: 
+    required: true
+
+  bc_num_hours:
+    widget: "number_field"
+    label: "Hours"
+    help: "The number of hours to request for the Jupyter Lab session."
+    value: 1
+    max: 12
+    display: true
+
+  custom_memory: 
+    widget: "text_field"
+    label: "Memory per Node"
+    pattern: "^[0-9]+(GB|MB)$"
+    help: "The amount of memory to request per node (e.g. 1GB, 100MB)."
+    value: "4GB"
+    display: true
+
+  num_cores:
+    widget: "number_field"
+    label: "Number of Cores"
+    help: "The number of CPU cores to request for the Jupyter Lab session."
+    value: 1
+    display: true
+  
+  gres:
+    widget: "text_field"
+    label: "GRES options"
+    help: "Specify any generic resources to request (e.g. GPUs). Leave blank if not needed."
+    value: ""
+    display: true
+
+form:
+  - desktop
+  - bc_vnc_idle
+  - bc_vnc_resolution
+  - bc_num_hours
+  - custom_memory
+  - num_cores
+  - gres
