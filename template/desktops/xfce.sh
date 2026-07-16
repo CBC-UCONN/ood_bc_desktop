@@ -1,4 +1,3 @@
-
 # Remove any preconfigured monitors
 if [[ -f "${HOME}/.config/monitors.xml" ]]; then
   mv "${HOME}/.config/monitors.xml" "${HOME}/.config/monitors.xml.bak"
@@ -36,6 +35,21 @@ else
     '/^CommandLoginShell=/{h;s/=.*/=TRUE/};${x;/^$/{s//CommandLoginShell=TRUE/;H};x}' \
     "${TERM_CONFIG}"
 fi
+
+# Change wallpaper
+url="https://ok7static.oktacdn.com/fs/bco/7/fs0tfc7m10fYickr3357"
+WALLPAPER="/tmp/biohive-wallpaper.jpg"
+wget -O $WALLPAPER $url
+
+# Get the list of properties related to wallpaper
+PROPERTIES=$(xfconf-query -c xfce4-desktop -l | grep last-image)
+
+# Loop through each property and change the wallpaper
+for PROP in $PROPERTIES
+do
+  xfconf-query -c xfce4-desktop -p $PROP -s $WALLPAPER
+done
+xfconf-query -c xfce4-desktop -p /desktop-icons/file-icons/show-removable -s false
 
 # launch dbus first through eval becuase it can conflict with a conda environment
 # see https://github.com/OSC/ondemand/issues/700
