@@ -9,8 +9,8 @@ batch_connect:
 
 script:
   native: [
-    "--partition=test",
-    "--qos=test",
+    "--nodelist=mantis-023,mantis-033,mantis-073",
+    "--qos=general",
     "--mem=<%= custom_memory %>",
     "--cpus-per-task=<%= num_cores %>",
     <%- if not gres.blank? -%> "--gres=<%= gres %>", <%- end -%>]
