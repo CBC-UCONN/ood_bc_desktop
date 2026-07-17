@@ -20,7 +20,7 @@ attributes:
   custom_memory: 
     widget: "text_field"
     label: "Memory per Node"
-    pattern: "^[0-9]+(GB|MB)$"
+    pattern: "^[0-9]+(GB|gb|G|g|MB|mb|M|m)$"
     help: "The amount of memory to request per node (e.g. 1GB, 100MB)."
     value: "4GB"
     display: true
