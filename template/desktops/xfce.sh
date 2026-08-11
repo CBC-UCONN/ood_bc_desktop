@@ -23,18 +23,7 @@ for service in "pulseaudio" "rhsm-icon" "spice-vdagent" "tracker-extract" "track
 done
 
 # Run Xfce4 Terminal as login shell (sets proper TERM)
-TERM_CONFIG="${HOME}/.config/xfce4/terminal/terminalrc"
-if [[ ! -e "${TERM_CONFIG}" ]]; then
-  mkdir -p "$(dirname "${TERM_CONFIG}")"
-  sed 's/^ \{4\}//' > "${TERM_CONFIG}" << EOL
-    [Configuration]
-    CommandLoginShell=TRUE
-EOL
-else
-  sed -i \
-    '/^CommandLoginShell=/{h;s/=.*/=TRUE/};${x;/^$/{s//CommandLoginShell=TRUE/;H};x}' \
-    "${TERM_CONFIG}"
-fi
+xfconf-query -c xfce4-terminal -p /misc/command-login-shell -n -t bool -s true
 
 # Change wallpaper
 url="https://ok7static.oktacdn.com/fs/bco/7/fs0tfc7m10fYickr3357"

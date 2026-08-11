@@ -9,7 +9,7 @@ cd "${HOME}"
 module purge && module restore
 
 # Ensure that the user's configured login shell is used
-export SHELL="$(getent passwd $USER | cut -d: -f7)"
+# export SHELL="$(getent passwd $USER | cut -d: -f7)"
 
 # Start up desktop
 echo "Launching desktop '<%= context.desktop %>'..."
